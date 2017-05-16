@@ -13,6 +13,7 @@ import (
 	"github.com/btcsuite/btcwallet/chain"
 	"github.com/btcsuite/btcwallet/rpc/legacyrpc"
 	"github.com/btcsuite/btcwallet/rpc/rpcserver"
+	"github.com/btcsuite/btcwallet/spvsvc/spvchain"
 	"github.com/btcsuite/btcwallet/wallet"
 	"github.com/btcsuite/btcwallet/wtxmgr"
 	"github.com/btcsuite/seelog"
@@ -30,6 +31,7 @@ var (
 	chainLog     = btclog.Disabled
 	grpcLog      = btclog.Disabled
 	legacyRPCLog = btclog.Disabled
+	spvchainLog  = btclog.Disabled
 )
 
 // subsystemLoggers maps each subsystem identifier to its associated logger.
@@ -40,6 +42,7 @@ var subsystemLoggers = map[string]btclog.Logger{
 	"CHNS": chainLog,
 	"GRPC": grpcLog,
 	"RPCS": legacyRPCLog,
+	"SPVC": spvchainLog,
 }
 
 // logClosure is used to provide a closure over expensive logging operations
@@ -85,6 +88,9 @@ func useLogger(subsystemID string, logger btclog.Logger) {
 	case "RPCS":
 		legacyRPCLog = logger
 		legacyrpc.UseLogger(logger)
+	case "SPVC":
+		spvchainLog = logger
+		spvchain.UseLogger(logger)
 	}
 }
 
