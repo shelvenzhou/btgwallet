@@ -1,38 +1,12 @@
-hash: a567152c861b11d05c72b812d894a657b95ae39d08f85c0b7cbf1a235dd8a1a7
-updated: 2017-05-18T20:28:25.480256291-06:00
+hash: 59de122918c56a47f9987706a303d54c95929728a1dd74e2f17f38b03274366e
+updated: 2017-06-05T18:12:20.300008456-07:00
 imports:
 - name: github.com/aead/siphash
   version: e404fcfc888570cadd1610538e2dbc89f66af814
 - name: github.com/boltdb/bolt
   version: 583e8937c61f1af6513608ccc75c97b6abdf4ff9
-- name: github.com/btcsuite/btcd
-  version: 58668c182103a00c5038c7130d7a23fad3a3bd34
-  repo: git@github.com:companyzero/btcdln
-  subpackages:
-  - addrmgr
-  - blockchain
-  - btcec
-  - btcjson
-  - chaincfg
-  - chaincfg/chainhash
-  - connmgr
-  - database
-  - peer
-  - txscript
-  - wire
 - name: github.com/btcsuite/btclog
   version: 73889fb79bd687870312b6e40effcecffbd57d30
-- name: github.com/btcsuite/btcrpcclient
-  version: e15bd09b466511d8836c4017bc4cbc2e0ff05f82
-  repo: git@github.com:companyzero/btcrpcclientln
-- name: github.com/btcsuite/btcutil
-  version: f814b35f15362b1122f55bd9034b6275552cc2f7
-  repo: git@github.com:companyzero/btcutilln
-  subpackages:
-  - base58
-  - gcs
-  - gcs/builder
-  - hdkeychain
 - name: github.com/btcsuite/fastsha256
   version: 637e656429416087660c84436a2a035d69d54e2e
 - name: github.com/btcsuite/go-socks
@@ -66,8 +40,33 @@ imports:
 - name: github.com/kkdai/bstream
   version: f391b8402d23024e7c0f624b31267a89998fca95
 - name: github.com/lightninglabs/neutrino
-  version: 8959f0d619d258039cf16044696035386e75392f
-  repo: git@github.com:lightninglabs/neutrino
+  version: 2f6910cce3055c11361bffc02e0c653dd9be087e
+  subpackages:
+  - filterdb
+  - headerfs
+- name: github.com/roasbeef/btcd
+  version: 4d38357cee3ed3843cd81a347e1573f037e0301e
+  subpackages:
+  - addrmgr
+  - blockchain
+  - btcec
+  - btcjson
+  - chaincfg
+  - chaincfg/chainhash
+  - connmgr
+  - database
+  - peer
+  - txscript
+  - wire
+- name: github.com/roasbeef/btcrpcclient
+  version: 9a7826550df8071460e2f5dd6ed9139dcbf260b8
+- name: github.com/roasbeef/btcutil
+  version: a259eaf2ec1b54653cdd67848a41867f280797ee
+  subpackages:
+  - base58
+  - gcs
+  - gcs/builder
+  - hdkeychain
 - name: golang.org/x/crypto
   version: 0fe963104e9d1877082f8fb38f816fcd97eb1d10
   subpackages:
