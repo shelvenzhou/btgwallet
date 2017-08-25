@@ -26,9 +26,9 @@ import (
 	"google.golang.org/grpc/codes"
 
 	"github.com/roasbeef/btcd/chaincfg/chainhash"
+	"github.com/roasbeef/btcd/rpcclient"
 	"github.com/roasbeef/btcd/txscript"
 	"github.com/roasbeef/btcd/wire"
-	"github.com/roasbeef/btcrpcclient"
 	"github.com/roasbeef/btcutil"
 	"github.com/roasbeef/btcutil/hdkeychain"
 	"github.com/roasbeef/btcwallet/chain"
@@ -817,7 +817,7 @@ func (s *loaderServer) StartConsensusRpc(ctx context.Context, req *pb.StartConse
 
 	err = rpcClient.Start()
 	if err != nil {
-		if err == btcrpcclient.ErrInvalidAuth {
+		if err == rpcclient.ErrInvalidAuth {
 			return nil, grpc.Errorf(codes.InvalidArgument,
 				"Invalid RPC credentials: %v", err)
 		}

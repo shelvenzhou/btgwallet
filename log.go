@@ -13,7 +13,7 @@ import (
 	"github.com/btcsuite/btclog"
 	"github.com/jrick/logrotate/rotator"
 	"github.com/lightninglabs/neutrino"
-	"github.com/roasbeef/btcrpcclient"
+	"github.com/roasbeef/btcd/rpcclient"
 	"github.com/roasbeef/btcwallet/chain"
 	"github.com/roasbeef/btcwallet/rpc/legacyrpc"
 	"github.com/roasbeef/btcwallet/rpc/rpcserver"
@@ -67,7 +67,7 @@ func init() {
 	wallet.UseLogger(walletLog)
 	wtxmgr.UseLogger(txmgrLog)
 	chain.UseLogger(chainLog)
-	btcrpcclient.UseLogger(chainLog)
+	rpcclient.UseLogger(chainLog)
 	rpcserver.UseLogger(grpcLog)
 	legacyrpc.UseLogger(legacyRPCLog)
 	neutrino.UseLogger(btcnLog)
@@ -94,14 +94,14 @@ func initLogRotator(logFile string) {
 		fmt.Fprintf(os.Stderr, "failed to create log directory: %v\n", err)
 		os.Exit(1)
 	}
-	pr, pw := io.Pipe()
-	r, err := rotator.New(pr, logFile, 10*1024, false, 3)
+	r, err := rotator.New(logFile, 10*1024, false, 3)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to create file rotator: %v\n", err)
 		os.Exit(1)
 	}
 
-	go r.Run()
+	pr, pw := io.Pipe()
+	go r.Run(pr)
 
 	logRotator = r
 	logRotatorPipe = pw
