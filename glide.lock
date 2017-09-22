@@ -1,5 +1,5 @@
-hash: a7b6593b62ad571ed749736405aa456bf2b6163f5d54e61241be56a7baaad6bd
-updated: 2017-08-29T15:22:10.322166424-07:00
+hash: c781beec4754f9e6c48a9521115015d060430c78dae18d419089ef1dff0f3bde
+updated: 2017-09-21T18:16:37.809204283-06:00
 imports:
 - name: github.com/aead/siphash
   version: e404fcfc888570cadd1610538e2dbc89f66af814
@@ -40,7 +40,7 @@ imports:
 - name: github.com/kkdai/bstream
   version: f391b8402d23024e7c0f624b31267a89998fca95
 - name: github.com/lightninglabs/neutrino
-  version: 68d076d252d5b32b514d2e7c86adbd31b01561b6
+  version: f03626bcc913dd710b2f7d02c08b2d95cb4e9534
   subpackages:
   - filterdb
   - headerfs
