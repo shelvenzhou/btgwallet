@@ -14,7 +14,7 @@ import (
 	"github.com/roasbeef/btcutil"
 	"github.com/roasbeef/btcwallet/wallet/txrules"
 
-	h "github.com/roasbeef/btcwallet/internal/helpers"
+	h "github.com/shelvenzhou/btgwallet/internal/helpers"
 	"github.com/roasbeef/btcwallet/wallet/internal/txsizes"
 )
 

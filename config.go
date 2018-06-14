@@ -18,8 +18,8 @@ import (
 	flags "github.com/jessevdk/go-flags"
 	"github.com/lightninglabs/neutrino"
 	"github.com/roasbeef/btcutil"
-	"github.com/roasbeef/btcwallet/internal/cfgutil"
-	"github.com/roasbeef/btcwallet/internal/legacy/keystore"
+	"github.com/shelvenzhou/btgwallet/internal/cfgutil"
+	"github.com/shelvenzhou/btgwallet/internal/legacy/keystore"
 	"github.com/roasbeef/btcwallet/netparams"
 	"github.com/roasbeef/btcwallet/wallet"
 )

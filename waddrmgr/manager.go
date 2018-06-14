@@ -15,7 +15,7 @@ import (
 	"github.com/roasbeef/btcd/chaincfg"
 	"github.com/roasbeef/btcutil"
 	"github.com/roasbeef/btcutil/hdkeychain"
-	"github.com/roasbeef/btcwallet/internal/zero"
+	"github.com/shelvenzhou/btgwallet/internal/zero"
 	"github.com/roasbeef/btcwallet/snacl"
 	"github.com/roasbeef/btcwallet/walletdb"
 )

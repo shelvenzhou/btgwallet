@@ -19,7 +19,7 @@ import (
 	"github.com/roasbeef/btcd/txscript"
 	"github.com/roasbeef/btcd/wire"
 	"github.com/roasbeef/btcutil"
-	"github.com/roasbeef/btcwallet/internal/cfgutil"
+	"github.com/shelvenzhou/btgwallet/internal/cfgutil"
 	"github.com/roasbeef/btcwallet/netparams"
 	"github.com/roasbeef/btcwallet/wallet/txauthor"
 	"github.com/roasbeef/btcwallet/wallet/txrules"

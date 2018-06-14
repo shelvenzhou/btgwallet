@@ -19,7 +19,7 @@ import (
 	"testing"
 
 	"github.com/roasbeef/btcd/btcjson"
-	"github.com/roasbeef/btcwallet/internal/rpchelp"
+	"github.com/shelvenzhou/btgwallet/internal/rpchelp"
 )
 
 func serverMethods() map[string]struct{} {

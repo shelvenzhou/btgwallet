@@ -13,7 +13,7 @@ import (
 	"github.com/roasbeef/btcd/txscript"
 	"github.com/roasbeef/btcutil"
 	"github.com/roasbeef/btcutil/hdkeychain"
-	"github.com/roasbeef/btcwallet/internal/zero"
+	"github.com/shelvenzhou/btgwallet/internal/zero"
 	"github.com/roasbeef/btcwallet/walletdb"
 )
 
