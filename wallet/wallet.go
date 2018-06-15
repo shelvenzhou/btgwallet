@@ -30,6 +30,7 @@ import (
 	"github.com/roasbeef/btcwallet/wallet/txrules"
 	"github.com/roasbeef/btcwallet/walletdb"
 	"github.com/roasbeef/btcwallet/wtxmgr"
+	btgChain "github.com/shelvenzhou/btgwallet/chain"
 )
 
 const (
@@ -163,6 +164,8 @@ func (w *Wallet) SynchronizeRPC(chainClient chain.Interface) {
 	case *chain.NeutrinoClient:
 		cc.SetStartTime(w.Manager.Birthday())
 	case *chain.BitcoindClient:
+		cc.SetStartTime(w.Manager.Birthday())
+	case *btgChain.BgolddClient:
 		cc.SetStartTime(w.Manager.Birthday())
 	}
 	w.chainClientLock.Unlock()
@@ -1439,6 +1442,12 @@ func (w *Wallet) GetTransactions(startBlock, endBlock *BlockIdentifier, cancel <
 			case *chain.RPCClient:
 				startResp = client.GetBlockVerboseTxAsync(startBlock.hash)
 			case *chain.BitcoindClient:
+				var err error
+				start, err = client.GetBlockHeight(startBlock.hash)
+				if err != nil {
+					return nil, err
+				}
+			case *btgChain.BgolddClient:
 				var err error
 				start, err = client.GetBlockHeight(startBlock.hash)
 				if err != nil {

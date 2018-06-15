@@ -12,6 +12,7 @@ import (
 	"github.com/roasbeef/btcwallet/waddrmgr"
 	"github.com/roasbeef/btcwallet/walletdb"
 	"github.com/roasbeef/btcwallet/wtxmgr"
+	btgChain "github.com/shelvenzhou/btgwallet/chain"
 )
 
 func (w *Wallet) handleChainNotifications() {
@@ -78,24 +79,24 @@ func (w *Wallet) handleChainNotifications() {
 		var notificationName string
 		var err error
 		switch n := n.(type) {
-		case chain.ClientConnected:
+		case btgChain.ClientConnected:
 			go sync(w)
-		case chain.BlockConnected:
+		case btgChain.BlockConnected:
 			err = walletdb.Update(w.db, func(tx walletdb.ReadWriteTx) error {
 				return w.connectBlock(tx, wtxmgr.BlockMeta(n))
 			})
 			notificationName = "blockconnected"
-		case chain.BlockDisconnected:
+		case btgChain.BlockDisconnected:
 			err = walletdb.Update(w.db, func(tx walletdb.ReadWriteTx) error {
 				return w.disconnectBlock(tx, wtxmgr.BlockMeta(n))
 			})
 			notificationName = "blockdisconnected"
-		case chain.RelevantTx:
+		case btgChain.RelevantTx:
 			err = walletdb.Update(w.db, func(tx walletdb.ReadWriteTx) error {
 				return w.addRelevantTx(tx, n.TxRecord, n.Block)
 			})
 			notificationName = "recvtx/redeemingtx"
-		case chain.FilteredBlockConnected:
+		case btgChain.FilteredBlockConnected:
 			// Atomically update for the whole block.
 			if len(n.RelevantTxs) > 0 {
 				err = walletdb.Update(w.db, func(
@@ -115,11 +116,11 @@ func (w *Wallet) handleChainNotifications() {
 
 		// The following require some database maintenance, but also
 		// need to be reported to the wallet's rescan goroutine.
-		case *chain.RescanProgress:
+		case *btgChain.RescanProgress:
 			err = catchUpHashes(w, chainClient, n.Height)
 			notificationName = "rescanprogress"
 			w.rescanNotifications <- n
-		case *chain.RescanFinished:
+		case *btgChain.RescanFinished:
 			err = catchUpHashes(w, chainClient, n.Height)
 			notificationName = "rescanprogress"
 			w.SetChainSynced(true)

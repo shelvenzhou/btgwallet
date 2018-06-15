@@ -7,23 +7,23 @@ package wallet
 import (
 	"github.com/roasbeef/btcd/wire"
 	"github.com/roasbeef/btcutil"
-	"github.com/roasbeef/btcwallet/chain"
 	"github.com/roasbeef/btcwallet/waddrmgr"
 	"github.com/roasbeef/btcwallet/wtxmgr"
+	btgChain "github.com/shelvenzhou/btgwallet/chain"
 )
 
 // RescanProgressMsg reports the current progress made by a rescan for a
 // set of wallet addresses.
 type RescanProgressMsg struct {
 	Addresses    []btcutil.Address
-	Notification *chain.RescanProgress
+	Notification *btgChain.RescanProgress
 }
 
 // RescanFinishedMsg reports the addresses that were rescanned when a
 // rescanfinished message was received rescanning a batch of addresses.
 type RescanFinishedMsg struct {
 	Addresses    []btcutil.Address
-	Notification *chain.RescanFinished
+	Notification *btgChain.RescanFinished
 }
 
 // RescanJob is a job to be processed by the RescanManager.  The job includes
@@ -122,7 +122,7 @@ out:
 
 		case n := <-w.rescanNotifications:
 			switch n := n.(type) {
-			case *chain.RescanProgress:
+			case *btgChain.RescanProgress:
 				if curBatch == nil {
 					log.Warnf("Received rescan progress " +
 						"notification but no rescan " +
@@ -134,7 +134,7 @@ out:
 					Notification: n,
 				}
 
-			case *chain.RescanFinished:
+			case *btgChain.RescanFinished:
 				if curBatch == nil {
 					log.Warnf("Received rescan finished " +
 						"notification but no rescan " +
